@@ -1,6 +1,8 @@
 package com.weixin.util;
 
 import com.thoughtworks.xstream.XStream;
+import com.weixin.entity.News;
+import com.weixin.entity.NewsMessge;
 import com.weixin.entity.TextMessage;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -10,10 +12,8 @@ import org.dom4j.io.SAXReader;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+
 /**
  * description:  <br>
  * version: 1.0 <br>
@@ -33,6 +33,7 @@ public class MessageUtil {
     public static final String MESSAGE_UNSUBSCRIBE = "unsubscribe";
     public static final String MESSAGE_CLICK = "click";
     public static final String MESSAGE_VIEW = "view";
+    public static final String MESSAGE_NEWS = "news";
 
     /**
      * description: xmlToMap <br>
@@ -72,20 +73,59 @@ public class MessageUtil {
      * @param textmessage
      * @return java.lang.String
      */
-    public static String textToxml(TextMessage textmessage) {
+    public static String textMessageToxml(TextMessage textmessage) {
         XStream xStream = new XStream();
-        xStream.alias("xml",textmessage.getClass());
+        xStream.alias("xml",TextMessage.class);
         return xStream.toXML(textmessage);
     }
 
-    public static String initText(String toUserName,String fromUserName,String content){
+    public static String newsMessageToxml(NewsMessge newsMessge) {
+        XStream xStream = new XStream();
+        xStream.alias("xml", NewsMessge.class);
+        xStream.alias("item", News.class);
+        return xStream.toXML(newsMessge);
+    }
+    /**
+     * description: 初始化文本消息 <br>
+     * version: 1.0 <br>
+     * date: 2021/6/10 0010 16:00 <br>
+     * author: lichaoge <br>
+     *
+     * @param toUserName
+     * @param fromUserName
+     * @param content
+     * @return java.lang.String
+     */
+    public static String initTextMessage(String toUserName,String fromUserName,String content){
         TextMessage textMessage = new TextMessage();
         textMessage.setToUserName(fromUserName);
         textMessage.setFromUserName(toUserName);
-        textMessage.setMsgType(MessageUtil.MESSAGE_TEXT);
+        textMessage.setMsgType(MESSAGE_TEXT);
         textMessage.setCreateTime(new Date().getTime());
         textMessage.setContent(content);
-        return textToxml(textMessage);
+        return textMessageToxml(textMessage);
+    }
+
+    public static String initNewsMessage(String toUserName,String fromUserName){
+
+        News news = new News();
+        news.setTitle("朝格❤乌日娜");
+        news.setDescription("大家一定要参加我们俩即将到来的婚礼！");
+        news.setPicUrl("http://lcg.ngrok2.xiaomiqiu.cn/Weixin/image/01.jpg");
+        news.setUrl("www.baidu.com");
+
+        List<News> list = new ArrayList<News>();
+        list.add(news);
+
+        NewsMessge newsMessge = new NewsMessge();
+        newsMessge.setToUserName(fromUserName);
+        newsMessge.setFromUserName(toUserName);
+        newsMessge.setCreateTime(new Date().getTime());
+        newsMessge.setMsgType(MESSAGE_NEWS);
+        newsMessge.setArticleCount(list.size());
+        newsMessge.setArticles(list);
+
+        return newsMessageToxml(newsMessge);
     }
 
     /**
@@ -101,7 +141,8 @@ public class MessageUtil {
         StringBuffer stringBuffer = new StringBuffer();
         stringBuffer.append("欢迎您关注，请按照菜单提示进行操作：\n\n");
         stringBuffer.append("1.公众号介绍\n");
-        stringBuffer.append("2.公众号开发人员介绍\n\n");
+        stringBuffer.append("2.公众号开发人员介绍\n");
+        stringBuffer.append("3.婚礼邀请\n\n");
         stringBuffer.append("回复？调出菜单。");
         return stringBuffer.toString();
     }
@@ -131,7 +172,9 @@ public class MessageUtil {
      */
     public static String kaiFa_jieShao(){
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("开发人员为：\n  内蒙古民族大学数学学院信息与计算科学专业学生-李朝格；");
+        stringBuffer.append("开发人员:\n\n");
+        stringBuffer.append(" 朝格\n 金俊\n 王朝\n 永成\n 胡思乐\n 文龙\n 闫青\n\n");
+        stringBuffer.append("一群对程序热爱的骚年们...\n");
         return stringBuffer.toString();
     }
 }

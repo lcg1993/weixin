@@ -1,6 +1,5 @@
 package com.weixin.controller;
 
-import com.weixin.entity.TextMessage;
 import com.weixin.util.CheckUtil;
 import com.weixin.util.MessageUtil;
 import org.dom4j.DocumentException;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Date;
 import java.util.Map;
 
 /**
@@ -25,6 +23,16 @@ import java.util.Map;
 @RestController
 public class WeixinController {
 
+    /**
+     * description: doGet <br>
+     * version: 1.0 <br>
+     * date: 2021/6/10 0010 16:04 <br>
+     * author: lichaoge <br>
+     *
+     * @param request
+ * @param response
+     * @return void
+     */
     @RequestMapping(value = "/Weixin",method = RequestMethod.GET)
     public void doGet (HttpServletRequest request, HttpServletResponse response) throws IOException {
         String signature = request.getParameter("signature");
@@ -38,6 +46,16 @@ public class WeixinController {
         }
     }
 
+    /**
+     * description: doPost <br>
+     * version: 1.0 <br>
+     * date: 2021/6/10 0010 16:02 <br>
+     * author: lichaoge <br>
+     *
+     * @param request
+     * @param response
+     * @return void
+     */
     @RequestMapping(value = "/Weixin",method = RequestMethod.POST)
     public void doPost (HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
@@ -52,24 +70,19 @@ public class WeixinController {
             String message = null;
             if (MessageUtil.MESSAGE_TEXT.equals(msgtype)) {
                 if ("1".equals(content)) {
-                    message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.gongZhongHao_jieShao());
+                    message = MessageUtil.initTextMessage(toUserName,fromUserName,MessageUtil.gongZhongHao_jieShao());
                 } else if ("2".equals(content)) {
-                    message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.kaiFa_jieShao());
+                    message = MessageUtil.initTextMessage(toUserName,fromUserName,MessageUtil.kaiFa_jieShao());
+                } else if ("3".equals(content)) {
+                    message = MessageUtil.initNewsMessage(toUserName,fromUserName);
                 } else if ("?".equals(content) || "？".equals(content)) {
-                    message = MessageUtil.initText(toUserName,fromUserName,MessageUtil.menuText());
+                    message = MessageUtil.initTextMessage(toUserName,fromUserName,MessageUtil.menuText());
                 }
-//                TextMessage textMessage = new TextMessage();
-//                textMessage.setToUserName(fromUserName);
-//                textMessage.setFromUserName(toUserName);
-//                textMessage.setMsgType("text");
-//                textMessage.setCreateTime(new Date().getTime());
-//                textMessage.setContent("您发送的消息是：" + content);
-//                message = MessageUtil.textToxml(textMessage);
                 System.out.println(message);
             } else if (MessageUtil.MESSAGE_EVENT.equals(msgtype)) {
-                String eventType = map.get("EventType");
+                String eventType = map.get("Event");
                 if (MessageUtil.MESSAGE_SUBSCRIBE.equals(eventType)) {
-                    message = MessageUtil.initText(toUserName,fromUserName,content);
+                    message = MessageUtil.initTextMessage(toUserName,fromUserName,MessageUtil.menuText());
                 } else if (MessageUtil.MESSAGE_UNSUBSCRIBE.equals(eventType)) {
 
                 }

@@ -1,23 +1,22 @@
 package com.weixin.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import java.util.List;
 
 /**
- * description: 回复文本消息 <br>
+ * description: 回复图文消息 <br>
  * version: 1.0 <br>
- * date: 2021/6/9 0009 16:19 <br>
+ * date: 2021/6/10 0010 15:51 <br>
  * author: lichaoge <br>
  */
-public class TextMessage extends BaseMessage {
+public class NewsMessge extends BaseMessage{
 
     private String ToUserName;
     private String FromUserName;
     private long CreateTime;
     private String MsgType;
 
-    private String Content;
-    private String MsgId;
+    private int ArticleCount;
+    private List<News> Articles;
 
     @Override
     public String getToUserName() {
@@ -59,19 +58,19 @@ public class TextMessage extends BaseMessage {
         MsgType = msgType;
     }
 
-    public String getContent() {
-        return Content;
+    public int getArticleCount() {
+        return ArticleCount;
     }
 
-    public void setContent(String content) {
-        Content = content;
+    public void setArticleCount(int articleCount) {
+        ArticleCount = articleCount;
     }
 
-    public String getMsgId() {
-        return MsgId;
+    public List<News> getArticles() {
+        return Articles;
     }
 
-    public void setMsgId(String msgId) {
-        MsgId = msgId;
+    public void setArticles(List<News> articles) {
+        Articles = articles;
     }
 }

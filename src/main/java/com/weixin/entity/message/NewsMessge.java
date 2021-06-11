@@ -1,6 +1,5 @@
 package com.weixin.entity.message;
 
-import javax.persistence.Entity;
 import java.util.List;
 
 /**
@@ -11,53 +10,53 @@ import java.util.List;
  */
 public class NewsMessge extends BaseMessage {
 
-//    private String ToUserName;
-//    private String FromUserName;
-//    private long CreateTime;
-//    private String MsgType;
+    private String ToUserName;
+    private String FromUserName;
+    private long CreateTime;
+    private String MsgType;
 
     private int ArticleCount;
     private List<News> Articles;
 
-//    @Override
-//    public String getToUserName() {
-//        return ToUserName;
-//    }
-//
-//    @Override
-//    public void setToUserName(String toUserName) {
-//        ToUserName = toUserName;
-//    }
-//
-//    @Override
-//    public String getFromUserName() {
-//        return FromUserName;
-//    }
-//
-//    @Override
-//    public void setFromUserName(String fromUserName) {
-//        FromUserName = fromUserName;
-//    }
-//
-//    @Override
-//    public long getCreateTime() {
-//        return CreateTime;
-//    }
-//
-//    @Override
-//    public void setCreateTime(long createTime) {
-//        CreateTime = createTime;
-//    }
-//
-//    @Override
-//    public String getMsgType() {
-//        return MsgType;
-//    }
-//
-//    @Override
-//    public void setMsgType(String msgType) {
-//        MsgType = msgType;
-//    }
+    @Override
+    public String getToUserName() {
+        return ToUserName;
+    }
+
+    @Override
+    public void setToUserName(String toUserName) {
+        ToUserName = toUserName;
+    }
+
+    @Override
+    public String getFromUserName() {
+        return FromUserName;
+    }
+
+    @Override
+    public void setFromUserName(String fromUserName) {
+        FromUserName = fromUserName;
+    }
+
+    @Override
+    public long getCreateTime() {
+        return CreateTime;
+    }
+
+    @Override
+    public void setCreateTime(long createTime) {
+        CreateTime = createTime;
+    }
+
+    @Override
+    public String getMsgType() {
+        return MsgType;
+    }
+
+    @Override
+    public void setMsgType(String msgType) {
+        MsgType = msgType;
+    }
 
     public int getArticleCount() {
         return ArticleCount;

@@ -1,9 +1,9 @@
 package com.weixin.util;
 
 import com.thoughtworks.xstream.XStream;
-import com.weixin.entity.News;
-import com.weixin.entity.NewsMessge;
-import com.weixin.entity.TextMessage;
+import com.weixin.entity.message.News;
+import com.weixin.entity.message.NewsMessge;
+import com.weixin.entity.message.TextMessage;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -111,8 +111,8 @@ public class MessageUtil {
         News news = new News();
         news.setTitle("朝格❤乌日娜");
         news.setDescription("大家一定要参加我们俩即将到来的婚礼！");
-        news.setPicUrl("http://lcg.ngrok2.xiaomiqiu.cn/Weixin/image/01.jpg");
-        news.setUrl("www.baidu.com");
+        news.setPicUrl("http://lcg.ngrok2.xiaomiqiu.cn/images/01.jpg");
+        news.setUrl("http://lcg.ngrok2.xiaomiqiu.cn/images/01.jpg");
 
         List<News> list = new ArrayList<News>();
         list.add(news);

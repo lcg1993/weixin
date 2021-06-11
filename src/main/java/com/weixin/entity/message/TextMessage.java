@@ -1,22 +1,22 @@
-package com.weixin.entity;
+package com.weixin.entity.message;
 
-import java.util.List;
+import com.weixin.entity.message.BaseMessage;
 
 /**
- * description: 回复图文消息 <br>
+ * description: 回复文本消息 <br>
  * version: 1.0 <br>
- * date: 2021/6/10 0010 15:51 <br>
+ * date: 2021/6/9 0009 16:19 <br>
  * author: lichaoge <br>
  */
-public class NewsMessge extends BaseMessage{
+public class TextMessage extends BaseMessage {
 
     private String ToUserName;
     private String FromUserName;
     private long CreateTime;
     private String MsgType;
 
-    private int ArticleCount;
-    private List<News> Articles;
+    private String Content;
+    private String MsgId;
 
     @Override
     public String getToUserName() {
@@ -58,19 +58,19 @@ public class NewsMessge extends BaseMessage{
         MsgType = msgType;
     }
 
-    public int getArticleCount() {
-        return ArticleCount;
+    public String getContent() {
+        return Content;
     }
 
-    public void setArticleCount(int articleCount) {
-        ArticleCount = articleCount;
+    public void setContent(String content) {
+        Content = content;
     }
 
-    public List<News> getArticles() {
-        return Articles;
+    public String getMsgId() {
+        return MsgId;
     }
 
-    public void setArticles(List<News> articles) {
-        Articles = articles;
+    public void setMsgId(String msgId) {
+        MsgId = msgId;
     }
 }

@@ -1,4 +1,4 @@
-package com.weixin.entity;
+package com.weixin.entity.message;
 
 /**
  * description: 图文消息体 <br>

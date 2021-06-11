@@ -1,6 +1,6 @@
-package com.weixin.entity;
+package com.weixin.entity.message;
 
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Entity;
 
 /**
  * description: 所有消息的父类 <br>

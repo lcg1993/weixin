@@ -12,10 +12,20 @@ public class MenuUtil {
 
     public static Menu initMenu(){
         Menu menu = new Menu();
-        ClickButton button1 = new ClickButton();
-        button1.setName("文本资料");
-        button1.setType("click");
-        button1.setKey("1");
+        Button button1 = new Button();
+        button1.setName("资料");
+
+        ClickButton button11 = new ClickButton();
+        button11.setName("文本资料");
+        button11.setType("click");
+        button11.setKey("11");
+
+        ClickButton button12 = new ClickButton();
+        button12.setName("视频资料");
+        button12.setType("click");
+        button12.setKey("12");
+
+        button1.setSub_button(new Button[]{button11,button12});
 
         ViewButton button2 = new ViewButton();
         button2.setName("菜鸟教程");

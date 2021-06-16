@@ -1,8 +1,13 @@
 package com.weixin.controller;
 
+import com.weixin.entity.AccessToken;
+import com.weixin.entity.table.LinShiBiao;
+import com.weixin.service.TokenService;
+import com.weixin.util.AppIDAndSecret;
 import com.weixin.util.CheckUtil;
 import com.weixin.util.MessageUtil;
 import org.dom4j.DocumentException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,6 +27,12 @@ import java.util.Map;
 
 @RestController
 public class WeixinController {
+
+    @Autowired
+    private TokenService tokenService;
+
+    @Autowired
+    private AppIDAndSecret appIDAndSecret;
 
     /**
      * description: doGet <br>
@@ -94,6 +105,13 @@ public class WeixinController {
             out.close();
         }
 
+    }
+
+    @RequestMapping("/ss")
+    public String selectLinShiBiao(){
+        AccessToken token = appIDAndSecret.getAccessToken();
+        System.out.println("token凭证：" + token.getAccessToken());
+        return "凭证：" + token.getAccessToken() + "有效时间：" + token.getExpiresIn();
     }
 
 }

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weixin.dao.LinShiBiaoMapper">
+  <resultMap id="BaseResultMap" type="com.weixin.entity.table.LinShiBiao">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="value" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="column_4" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="column_5" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="column_6" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="column_7" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="column_8" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="inserttime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="updatetime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, code, value, column_4, column_5, column_6, column_7, column_8, inserttime, updatetime
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from linshibiao
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from linshibiao
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.weixin.entity.table.LinShiBiao">
+    insert into linshibiao (id, code, value, 
+      column_4, column_5, column_6, 
+      column_7, column_8, inserttime, 
+      updatetime)
+    values (#{id,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
+      #{column4,jdbcType=VARCHAR}, #{column5,jdbcType=VARCHAR}, #{column6,jdbcType=VARCHAR}, 
+      #{column7,jdbcType=VARCHAR}, #{column8,jdbcType=INTEGER}, #{inserttime,jdbcType=TIMESTAMP}, 
+      #{updatetime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.weixin.entity.table.LinShiBiao">
+    insert into linshibiao
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="value != null">
+        value,
+      </if>
+      <if test="column4 != null">
+        column_4,
+      </if>
+      <if test="column5 != null">
+        column_5,
+      </if>
+      <if test="column6 != null">
+        column_6,
+      </if>
+      <if test="column7 != null">
+        column_7,
+      </if>
+      <if test="column8 != null">
+        column_8,
+      </if>
+      <if test="inserttime != null">
+        inserttime,
+      </if>
+      <if test="updatetime != null">
+        updatetime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="column4 != null">
+        #{column4,jdbcType=VARCHAR},
+      </if>
+      <if test="column5 != null">
+        #{column5,jdbcType=VARCHAR},
+      </if>
+      <if test="column6 != null">
+        #{column6,jdbcType=VARCHAR},
+      </if>
+      <if test="column7 != null">
+        #{column7,jdbcType=VARCHAR},
+      </if>
+      <if test="column8 != null">
+        #{column8,jdbcType=INTEGER},
+      </if>
+      <if test="inserttime != null">
+        #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.weixin.entity.table.LinShiBiao">
+    update linshibiao
+    <set>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="value != null">
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+      <if test="column4 != null">
+        column_4 = #{column4,jdbcType=VARCHAR},
+      </if>
+      <if test="column5 != null">
+        column_5 = #{column5,jdbcType=VARCHAR},
+      </if>
+      <if test="column6 != null">
+        column_6 = #{column6,jdbcType=VARCHAR},
+      </if>
+      <if test="column7 != null">
+        column_7 = #{column7,jdbcType=VARCHAR},
+      </if>
+      <if test="column8 != null">
+        column_8 = #{column8,jdbcType=INTEGER},
+      </if>
+      <if test="inserttime != null">
+        inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null">
+        updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.weixin.entity.table.LinShiBiao">
+    update linshibiao
+    set code = #{code,jdbcType=VARCHAR},
+      value = #{value,jdbcType=VARCHAR},
+      column_4 = #{column4,jdbcType=VARCHAR},
+      column_5 = #{column5,jdbcType=VARCHAR},
+      column_6 = #{column6,jdbcType=VARCHAR},
+      column_7 = #{column7,jdbcType=VARCHAR},
+      column_8 = #{column8,jdbcType=INTEGER},
+      inserttime = #{inserttime,jdbcType=TIMESTAMP},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
